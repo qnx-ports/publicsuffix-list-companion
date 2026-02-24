@@ -1,0 +1,21 @@
+pkgname=publicsuffix-list
+pkgver=20250812
+pkgrel=0
+pkgdesc='Cross-vendor public domain suffix database'
+url='https://github.com/publicsuffix/list'
+arch="noarch"
+license="MPL-2.0"
+_commit=0dc563d009443d96627fae0441ec15fab9b4435d
+source="https://github.com/publicsuffix/list/archive/$_commit.tar.gz"
+
+package() {
+    mkdir -p "$pkgdir"
+    cd "$srcdir"/list-"$_commit"
+    install -Dvm 644 public_suffix_list.dat tests/test_psl.txt -t "$pkgdir/usr/share/publicsuffix"
+    ln -sv public_suffix_list.dat "$pkgdir/usr/share/publicsuffix/effective_tld_names.dat"
+    install -Dvm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+
+}
+sha512sums="
+7bfa63b92d354941f6d861cc969d7376b6ee4a65c2cf3324bc1822355faf70303148b351a38002f61530a3f9fb835ebd618cf482d81f7ef8f87da43842b56160  0dc563d009443d96627fae0441ec15fab9b4435d.tar.gz
+"
