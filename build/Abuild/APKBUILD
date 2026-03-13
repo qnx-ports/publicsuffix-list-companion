@@ -1,6 +1,6 @@
 pkgname=publicsuffix-list
 pkgver=20250812
-pkgrel=0
+pkgrel=${pkgrel:-0}
 pkgdesc='Cross-vendor public domain suffix database'
 url='https://github.com/publicsuffix/list'
 arch="noarch"
@@ -16,6 +16,7 @@ package() {
     install -Dvm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 
 }
+options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 7bfa63b92d354941f6d861cc969d7376b6ee4a65c2cf3324bc1822355faf70303148b351a38002f61530a3f9fb835ebd618cf482d81f7ef8f87da43842b56160  0dc563d009443d96627fae0441ec15fab9b4435d.tar.gz
 "
